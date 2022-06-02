@@ -1,7 +1,7 @@
 
 
 import SlideHome from './SlideHome'
-import ProductHome from './ProductHome'
+
 import Fabric from './Fabric'
 import Customize from './Customize'
 import Register from './register'
@@ -15,11 +15,12 @@ import StandardSizing from './StandardSizing'
 import FormLogin from './FormLogin'
 import MeasurementTable from './MeasurementTable'
 import ManualMeasurement from './ManualMeasurement'
+import BodyType from './BodyType'
+
 
 export {
 
 SlideHome,
-ProductHome,
 Fabric, 
 Customize,
 EndCustomize,
@@ -30,5 +31,5 @@ StandardSizing,
 ManualMeasurement,
 FormLogin,
 MeasurementTable
-
+,BodyType
 }

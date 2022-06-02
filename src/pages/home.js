@@ -1,6 +1,8 @@
 import React from 'react'
-import { SlideHome, ProductHome} from '../components'
+import { SlideHome} from '../components'
 
+
+//working over existing product 
 const Home = () => {
     return (
         <>

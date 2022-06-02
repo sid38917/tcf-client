@@ -9,12 +9,36 @@ import { SetUser, SetFabric, SetCustomize } from "../stores/action";
 const CustomPage = (props) => {
   const params = useParams();
 
+  //active page 
   const [active, setActive] = useState("fabric");
+  //data 
   const [dataCustom, setDataCustom] = useState([]);
   const history = useHistory();
+  //redux 
   const { dataStore, SetFabric, SetCustomize } = props;
+  // const [total, setTotal] = useState(false)
+  //if everything is completed
   const [completed, setCompleted] = useState(false);
 
+//   useEffect(() => {
+//     if(dataCustom.customize.length === total && total !== 0) {
+//         console.log('enter', dataCustom.customize.length, total)
+//         setCompleted(true)
+//     } else {
+//         setCompleted(false)
+//     }
+// }, [dataCustom.customize])
+
+const selectCustomize = (data, total) => {
+  SetCustomize(data,params)
+  if(dataCustom.customize ) {
+    if(dataCustom.customize.length === total && total !== 0) {
+      setCompleted(true)
+    }
+  }
+}
+
+  //fileres the data, 
   useEffect(() => {
     setActive(params.style);
     const filterData = dataStore.find(
@@ -23,6 +47,28 @@ const CustomPage = (props) => {
     console.log(dataStore, "filterData");
     setDataCustom(filterData);
   }, [params, dataStore.length]);
+
+
+//this is to determine which page it will move to 
+//fabric,customize, and endCustomzie are compoents, and because of the accessibilites that react has, I can reuse the components
+//data and setData are then passed props for fabric
+//those props that are passed on which include the data of the user, can then be reused in that component 
+//similalry with customize and endCustomzie, the props passed on include dataCustom, which is passed as a prop in this page
+//dataCustom includes the custom data from the redux
+//selectCustomize is an action from redux that is passed as a prop
+//it basically updates the state in redux with the customization data 
+//Active is a useState variable that determines which page the user is on
+//
+//
+
+//the active component determines which component the user is on, (fabrics, customize, endCustomize)
+//active which is a useState variable to determine the component which component the user is on
+//through params, which is taken from react-router-dom library
+//it checks if the user is on the fabric page 
+//and dataCustom which is a useState array variable is passed as a prop, to hold the data of the user
+//alongside SetData, which takes in the data and params, which is the address, to determine the product the user has chosen
+//then the SetFabric redux action is passed, with the data and params, for the product the user has chosen
+//SetFabric will update the Redux state with the fabric data  
 
   function activeComponent() {
     if (active === "fabric") {
@@ -36,7 +82,7 @@ const CustomPage = (props) => {
       return (
         <Customize
           dataCustom={dataCustom}
-          setDataCustom={(data) => SetCustomize(data, params)}
+          setDataCustom={(data, total) => selectCustomize(data, total)}
           params={params}
           setCompleted={setCompleted}
         />
@@ -46,6 +92,14 @@ const CustomPage = (props) => {
     }
   }
 
+
+  //useParams is from react router dom, and it is basically for accessing the address of the page
+  //through the use of useParams, I can access the product chosen, and then that can be added to the address
+//status checks if the user has chosen data for the fabrics page, which is seen through dataCustom, which is an 
+//array of objects variable that holds all the user data
+//if it is false, the user will not be able to proceed to the next page, and an error message will appear
+//if the is ture, the user can then proceed to the customization page, where the user can choose their customization
+//based on the outfit chosen 
   function handleActive(status) {
     console.log(completed);
     if (status === "next") {
@@ -91,6 +145,8 @@ const CustomPage = (props) => {
 //     }
 //   };
 
+
+ //GUI
   return (
     <>
       {/* {JSON.stringify(dataCustom)}
@@ -118,6 +174,12 @@ const CustomPage = (props) => {
     </>
   );
 };
+
+
+//mapStateToProps takes in the state of the user data and custom data, as there are two redux stores, there is custom and user
+//it takes the custom and user data from the state, and updates the data which is then passed as props in the following class, such as customize
+//setUser, setFabric, and setCustomize are all actions from redux, and pasisng it as props allows to pass data into these actions 
+//these are then used as props in the fabric, customize pages,
 
 const mapStateToProps = (state) => {
   const { User, Custom } = state;

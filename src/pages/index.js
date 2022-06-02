@@ -22,25 +22,31 @@ import Measurement from './Measurement'
 import Register from './Register'
 import TransactionPage from './Transaction';
 import { ResetUser } from '../stores/action/userAction';
-
+import { ResetCustom } from '../stores/action';
 import { Cart } from '../components';
 import {connect} from 'react-redux';
 import {SetUser} from '../stores/action'
+// import DisplayOptions from './displayOptions';
 const { Header, Content, Footer } = Layout;
 const MainPage = (props) => {
 const history = useHistory();
-const {dataUser, ResetUser} = props;
+const {dataUser, ResetUser, ResetCustom} = props;
 const [collapsed, setCollapsed] = useState(false)
 
+
+//this is to log the user out, reset user is taken from redux, where the user name is cleared, and then 
+//the user is pushed back to the home page 
 function logout() {
     ResetUser()
+    ResetCustom()
     history.push('/')
 }
-function toggle() { 
-setCollapsed(!collapsed)
-}
+// function toggle() { 
+// setCollapsed(!collapsed)
+// }
 
 
+ //GUI
 return (
 <Layout style={{ minHeight: '100vh' }}>
 <Header className="header">
@@ -48,6 +54,7 @@ return (
     <Image src={"https://i.ibb.co/GCgpW7V/logo.png"} height={50}/>
     </div>
 <Menu mode="horizontal" defaultSelectedKeys={['1']} className="menu">
+    {/* This is for the items in the menu  */}
 <Menu.Item key="1" icon={<HomeOutlined />}>
 <Link to="/">
 Home
@@ -61,8 +68,9 @@ About Us
 </Menu.Item>
 <Menu.Item key="4" >
 
-
-    
+{/* 
+    if the dataUser is there, through the determination of the token, then when clicking
+    log out the user is logged out, and when pressed the login button, the user is pushed to the login button  */}
 
     { 
         dataUser.token ?
@@ -77,14 +85,12 @@ About Us
 
 </Menu.Item>
 <Menu.Item key = '5'>
- <Link to = '/register'>Register</Link>
+ <Link to = '/Register'>Register</Link>
 </Menu.Item>
 <Menu.Item key = '6'>
     <Link to = '/checkout'>Cart</Link>
 </Menu.Item>
-<Menu.Item key = '7'>
-    <Link to = '/transaction'>Transaction</Link>
-</Menu.Item>
+
 </Menu>
 </Header>
 <Content
@@ -95,7 +101,7 @@ style={{
 // minHeight: 280,
 }}
 >
-
+{/* this is for the route paths */}
 <Switch>
                     <Route path="/login">
                         <Login />
@@ -109,15 +115,15 @@ style={{
                     <Route path="/measurement/:product">
                         <Measurement />
                     </Route>
+
+                 
                   
                     <Route path = '/checkout'>
                         <Checkout/>
 
  
                     </Route>
-                    <Route path = '/transaction'>
-                        <TransactionPage/>
-                    </Route>
+                    
                    
                     <Route path="/">
                         <Home />
@@ -142,7 +148,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    SetUser, ResetUser
+    SetUser, ResetUser, ResetCustom
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

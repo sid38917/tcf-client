@@ -6,13 +6,14 @@ import {ResetCustom} from '../stores/action'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios';
 const { Title } = Typography;
-
+//dataCustom, which is the custom data chosen by the user is passed here 
 const Cart = ({ dataCustom }) => {
-  const [viewCustom, setViewCustom] = useState(false)
-  const [ viewMeasurement, setViewMeasurement] = useState(false)
-  const [currentData, setCurrentData] = useState('')
+  const [viewCustom, setViewCustom] = useState(false) //viewing the customizations chosen
+  const [ viewMeasurement, setViewMeasurement] = useState(false) //viewing the measurement options chosen
+  const [currentData, setCurrentData] = useState('') //dataa
   const dispatch = useDispatch()
-  const history = useHistory()
+  const history = useHistory() //history is used to push to other pages
+  //this is to handle the image, so when a product is chosen for instance suits, then the standard  of the suit is shown in the cart page 
   const handleImage = (product) => {
     switch (product) {
       case 'suits':
@@ -27,14 +28,22 @@ const Cart = ({ dataCustom }) => {
         break;
     }
   };
+
+
+  
   return (
     <>
+    {/* modal visible is basically the modal pop up, so it is initially set as false, and then when cancelled it set as false so that it closes  */}
      <Modal visible={viewCustom} onCancel={() => setViewCustom(false)} footer={null}>
-      <EndCustomize data={currentData} />
+      <EndCustomize data={currentData} /> {/* the current data chosen is set to endCustomize in order for it to print the modal */}
     </Modal>
+    {/* You could set footer to null if you don't need default footer buttons.
+
+ */}
     <Modal visible={viewMeasurement} onCancel={() => setViewMeasurement(false)}>
       <MeasurementTable data={currentData.measurement} />
-    </Modal>
+    </Modal> 
+    {/*this maps the data, so what it does it creates a row and then it prints the product image, the price, the name, the customization and measurement button, etc.  */}
       {dataCustom.map((item) => (
         <Row justify='center'>
           <div
@@ -48,6 +57,7 @@ const Cart = ({ dataCustom }) => {
               marginBottom: 10,
             }}
           >
+            
             <div className='flex-center'>
               <Image width={100} src={handleImage(item.product)} />
             </div>

@@ -9,5 +9,5 @@ import { ResetUser } from './userAction'
 
 
 export  {
-    SetUser, SetFabric, SetCustomize, SetMeasurement, ResetCustom, SetDelivery, FixValueMeasurement
+    SetUser, SetFabric, SetCustomize, SetMeasurement, ResetCustom, SetDelivery, FixValueMeasurement, ResetUser
 }

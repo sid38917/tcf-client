@@ -10,10 +10,10 @@ const styles = {
   marginRight: 10,
 };
 const Delivery = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //dispatch is used to dispatch an action,such as storing the data 
   const dataStore = useSelector((state) => state.User.delivery);
   const {
-    firstName,
+    firstName, 
     lastName,
     mobileNumber,
     country,
@@ -22,37 +22,10 @@ const Delivery = () => {
     postCode,
     address,
   } = dataStore;
-  // const [firstName, setFirstName] = useState('')
-  // const [lastName, setLastName] = useState('')
-  // const [mobileNumber, setMobileNumber] = useState('')
-  // const [country, setCountry] = useState('')
-  // const [city, setCity] = useState('')
-  // const [state, setState] = useState('')
-  // const [postCode, setPostCode] = useState('')
-  // const [address, setAddress] = useState('')
 
-  // useEffect(() => {
-  //     const payload = {
-  //         firstName, lastName, mobileNumber, country, city, state, postCode, address
-  //     }
-
-  //     dispatch(SetDelivery(payload))
-  //     console.log('data', firstName, lastName, mobileNumber, country, city, state, postCode, address)
-  // }, [firstName, lastName, mobileNumber, country, city, state, postCode, address])
-
-  // useEffect(() => {
-  //     console.log('data store', dataStore)
-  //     const {firstName, lastName, mobileNumber, country, city, state, postCode, address} = dataStore
-  //     setFirstName(firstName)
-  //     setLastName(lastName)
-  //     setMobileNumber(mobileNumber)
-  //     setCountry(country)
-  //     setCity(city)
-  //     setState(state)
-  //     setPostCode(postCode)
-  //     setAddress(address)
-  // }, [dataStore])
-
+  
+  
+ //GUI
   return (
     <>
       <Row>
@@ -95,6 +68,8 @@ const Delivery = () => {
             <Input
               value={country}
               onChange={(e) => {
+                //payload refers to the data, and ... maps out the data
+                //e refers to the event, 
                 const payload = { ...dataStore, country: e.target.value };
                 dispatch(SetDelivery(payload));
               }}

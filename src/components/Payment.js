@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Row, Card, Input, Col } from 'antd';
 
 const Payment = (props) => {
-    const {data, dataUser} = props
+    const {data, dataUser} = props //passing the userdata through props 
     const [itemsTotal, setItemsTotal] = useState(0)
     const [shipping, setShipping] = useState(0)
     const [total, setTotal] = useState(0)
@@ -32,11 +32,13 @@ const Payment = (props) => {
 
         
     }, [data])
+
+     //GUI
     return (<>
         <Row justify = 'center' style = {{marginTop: '50vh', minWidth: '50vw'}}>
 
             <div style = {{minWidth: '50vw', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', alignContent: 'center', paddingLeft: 20}}>
-                {JSON.stringify(data)}
+                {/* {JSON.stringify(data)} */}
                 <Row justify = 'start' style = {{marginTop: 10, marginBottom: 10}}>
                     <Col span = {8}>
                     <h3>Items Total: </h3>

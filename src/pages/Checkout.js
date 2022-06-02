@@ -16,12 +16,13 @@ import { useHistory } from 'react-router';
 
 
 const Checkout = ({dataStore, dataUser, ResetCustom}) => {
-
+//dataStore holds the customization data 
     
     const history = useHistory()
-const [loading, setLoading] = useState(false)
-    const [active, setActive] = useState('cart');
-    const [viewCustom, setViewCustom] = useState(false)
+const [loading, setLoading] = useState(false) //loading 
+    const [active, setActive] = useState('cart'); //active cart 
+    const [viewCustom, setViewCustom] = useState(false) //viewing your customization 
+
 
 useEffect(() => {
     const getTransaction = () => {
@@ -31,6 +32,8 @@ useEffect(() => {
 }
 })
 
+
+//menu 
     const menu = [
         {
             title: 'CART',
@@ -45,6 +48,7 @@ useEffect(() => {
         }
     ]
     
+//if a component is pressed then it will take the user to this page 
    const activeHandler = ()  => {
     
     
@@ -58,6 +62,8 @@ useEffect(() => {
        }
 
    }
+
+   //if the component is chosen the color will be white 
 
    const styleActive = (item) => {
        if(active === item) {
@@ -73,6 +79,7 @@ useEffect(() => {
        }
    }
 
+   
    if(dataStore.length === 0) {
     return (
         <>
@@ -86,9 +93,13 @@ useEffect(() => {
     )
 }
 
+//error that returns if there is an error, 
+
 const error = () => {
     return message.error("you haven't filled everything up")
 }
+
+//valudation will be true if all of this is inputted so this checks 
 
 const validationDelivery = () => {
     const delivery = dataUser.delivery
@@ -106,6 +117,8 @@ const validationDelivery = () => {
     console.log('data', delivery)
 
 
+  
+
     if(!firstName || !lastName 
         || !mobileNumber || !state
          || !city || !country 
@@ -121,12 +134,12 @@ const validationDelivery = () => {
     
 
 
+//if next is pressed it will go to the next page
+
 const onNext = () => {
 
 
     
-    
-
     if(active ===  'cart') {
         setActive('delivery')
     } else if (active === 'delivery') {
@@ -143,15 +156,25 @@ const onNext = () => {
 
 }
 
+//this is the cost that the user will have to pay, and the price is determined by the
+//the price of the fabric, additionally if the user is not from jakarta
+//they will have to pay extra determined price 
+
+
+//the following code conveys how the price of the product is determined
+//dataStore, which is passed as a prop through redux, by the mapStateToProps function
+// includes the customization data taken from the current state. it then searches the state
+//for the fabric price. It then checks dataUser, which holds the delivery information 
+//of the user, to see if the city is jakarta. If it isn't the shipping costs gets added by 250000,
+//and if it is, then the shipping cost is free. The total is utlimatley determined through the price of the fabric
+//obtained from the fabric data stored in the state, plus the shipping cost. 
+//the payload is then passed, which includes delivery, shippingcost, itemsTotal, total, and items.
+//it is stored in this payload to be posted with the POST action to the backend
+//in order to be stored in the database. 
 const order = () => {
-    console.log('data user', dataUser)
-    console.log('_________')
-    console.log('dataStore', dataStore)
 
     let itemsTotal = 0
     let shippingCost = 0
-
-
 
     dataStore.map((item) => {
         itemsTotal += item.fabric.price
@@ -166,11 +189,6 @@ const order = () => {
 
     let total = shippingCost + itemsTotal
 
-    
-
-
-    
-
     console.log(itemsTotal, shippingCost, total)
 
     let payload = {
@@ -181,6 +199,12 @@ const order = () => {
         items: dataStore
     }
 
+
+
+    //POST method, with the functiion of posting data to the backend. 
+    //it posts the token of the user, which allows for accessing the id of the user
+    //in order to determine which user's order it is placed under, through the customer objectId
+    //Additionally, the customization data is passed 
     axios({
         method: 'post',
         url: 'http://localhost:4000/transaction',
@@ -189,9 +213,9 @@ const order = () => {
         }, data: payload
     })
     .then((res) => {
-        console.log(res.data)
+        console.log(res.data) //the user data, this is where the userData gets pushed 
         message.success('order success')
-        history.push('/transaction')
+        history.push('/')
     })
     .catch((err) => {
         console.log('error', err)
@@ -201,14 +225,14 @@ const order = () => {
         setLoading(false)
     })
 
-    axios.post('https://localhost:4000/transaction',  {
+    // axios.post('https://localhost:4000/transaction',  {
         
-        delivery: dataUser.delivery,
-        shipping: shippingCost,
-        itemsTotal: itemsTotal,
-        total: total,
-        items: dataStore
-    })
+    //     delivery: dataUser.delivery,
+    //     shipping: shippingCost,
+    //     itemsTotal: itemsTotal,
+    //     total: total,
+    //     items: dataStore
+    // })
 }
   
 
@@ -245,7 +269,7 @@ return (
       </Row>
       <div>{activeHandler()}</div>
       <Divider />
-      {JSON.stringify(dataStore)}
+      {/* {JSON.stringify(dataStore)} */}
       <Row
         justify='end'
         style={{

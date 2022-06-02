@@ -78,7 +78,7 @@ table {
   .text-low-margin{
     margin-top: 0;
     margin-bottom:0;
-    background-color:blueviolet;
+    background-color:transparent;
     padding: 0
   }
 

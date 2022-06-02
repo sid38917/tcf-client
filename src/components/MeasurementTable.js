@@ -16,13 +16,13 @@ const MeasurementTable = ({data}) => {
         }
     ]
 
-   
+    //GUI
     return (
         <>
             
         <Table columns = {columns} dataSource={data} pagination={false}/>
 
-        {JSON.stringify}
+        {/* {JSON.stringify} */}
 
         </>
     )

@@ -1,4 +1,4 @@
-const dataFabrics = [
+const dataFabric = [
     {
         url: 'https://i.ibb.co/GVpkpRB/NJB-PC-0002-6420000-S-BLUE.jpg',
         name: 'fabric a',
@@ -127,6 +127,8 @@ const dataFabrics = [
     
 ]
 
+
+//the data of the fabric is stored in array of objects, which includes the url for the image, name, colour, type and price 
 const dataFabricShirt = [
     {
         url: "https://i.ibb.co/RNWqYz5/PIN-NON-0001-123016-PAUL-P-BLACK.jpg",
@@ -254,5 +256,5 @@ const dataFabricShirt = [
 
 ]
 export  {
-    dataFabrics, dataFabricShirt
+    dataFabric, dataFabricShirt
 }

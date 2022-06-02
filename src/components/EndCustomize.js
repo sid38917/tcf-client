@@ -3,6 +3,7 @@
 import React from 'react';
 import {Divider,  Row, Button, Image, Card, Input} from 'antd'
 
+ //GUI
 const EndCustomize = ({data}) => {
     const { TextArea } = Input;
     return (
@@ -12,6 +13,8 @@ const EndCustomize = ({data}) => {
             </Row>
             <Card style = {{width: '100%'}}>                   
                 <Row>
+                    {/* data is used as a prop, and it takes in the customization data which is stored in an array, and maps the options, with the 
+                    image and the name of the option. it is stored in a card  */}
                     {data.customize.map((item, index) => (
                         <div style = {{display: 'flex', width: 300}}>
                             <Card style = {{width: 200, padding:0}}>
