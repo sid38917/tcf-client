@@ -1,7 +1,6 @@
  
  //these are the types of actions the user takes when customizitnhg 
 
-import { ConsoleSqlOutlined } from "@ant-design/icons"
 
  //the first one is SetFabric, which allows the user to set the fabric 
  const SetFabric = (data, params) => {

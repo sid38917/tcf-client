@@ -156,9 +156,7 @@ const onNext = () => {
 
 }
 
-//this is the cost that the user will have to pay, and the price is determined by the
-//the price of the fabric, additionally if the user is not from jakarta
-//they will have to pay extra determined price 
+
 
 
 //the following code conveys how the price of the product is determined
@@ -225,14 +223,7 @@ const order = () => {
         setLoading(false)
     })
 
-    // axios.post('https://localhost:4000/transaction',  {
-        
-    //     delivery: dataUser.delivery,
-    //     shipping: shippingCost,
-    //     itemsTotal: itemsTotal,
-    //     total: total,
-    //     items: dataStore
-    // })
+    
 }
   
 

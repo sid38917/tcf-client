@@ -6,6 +6,8 @@ import thunk from "redux-thunk";
 
 import reducers from './reducer';
 
+//used for creating the redux library 
+
 export const store = createStore(
     reducers,
     applyMiddleware(thunk)

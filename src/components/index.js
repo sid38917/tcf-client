@@ -4,7 +4,7 @@ import SlideHome from './SlideHome'
 
 import Fabric from './Fabric'
 import Customize from './Customize'
-import Register from './register'
+
 import EndCustomize from './EndCustomize'
 
 import Delivery from './Delivery'

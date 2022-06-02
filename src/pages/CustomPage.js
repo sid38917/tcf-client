@@ -20,14 +20,7 @@ const CustomPage = (props) => {
   //if everything is completed
   const [completed, setCompleted] = useState(false);
 
-//   useEffect(() => {
-//     if(dataCustom.customize.length === total && total !== 0) {
-//         console.log('enter', dataCustom.customize.length, total)
-//         setCompleted(true)
-//     } else {
-//         setCompleted(false)
-//     }
-// }, [dataCustom.customize])
+
 
 const selectCustomize = (data, total) => {
   SetCustomize(data,params)
@@ -49,17 +42,7 @@ const selectCustomize = (data, total) => {
   }, [params, dataStore.length]);
 
 
-//this is to determine which page it will move to 
-//fabric,customize, and endCustomzie are compoents, and because of the accessibilites that react has, I can reuse the components
-//data and setData are then passed props for fabric
-//those props that are passed on which include the data of the user, can then be reused in that component 
-//similalry with customize and endCustomzie, the props passed on include dataCustom, which is passed as a prop in this page
-//dataCustom includes the custom data from the redux
-//selectCustomize is an action from redux that is passed as a prop
-//it basically updates the state in redux with the customization data 
-//Active is a useState variable that determines which page the user is on
-//
-//
+
 
 //the active component determines which component the user is on, (fabrics, customize, endCustomize)
 //active which is a useState variable to determine the component which component the user is on

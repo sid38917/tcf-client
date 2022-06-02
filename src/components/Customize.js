@@ -60,15 +60,7 @@ useEffect(() => {
 }, [params]) //after it renders it does this, basically, and it wont repeat after rendering because of the parameters at the end  
 
 
-//the useEffect here, is meant to handle if the user has finished the data 
-// useEffect(() => {
-//     if(dataCustom.customize.length === total && total !== 0) {
-//         console.log('enter', dataCustom.customize.length, total)
-//         setCompleted(true)
-//     } else {
-//         setCompleted(false)
-//     }
-// }, [dataCustom.customize])
+
 
 
 //this is for setting the data, so when the user selects the option, the name of the styling option will be set, as well as the 
@@ -126,12 +118,7 @@ function selectedItem(image, item) {
 
 
    
-//if this styling option is chosen, then it returns black and if it is finisehd then it returns blue, else return white
-//activeButton takes in an arguement item. The found variable searches for the data of the customization option, that 
-// If the item.name is equal to the currentData name, which holds the customization option the user is on
-//If the customization option the user is on matches this, then the background color of the option will turn black
-//to determine the user is on that option. Additionally, if the user has chosen an option within the customization option
-// the color will of the customization option will turn blue, as determined by the variable found,
+
 
 const activeButton = (item) => {
         const found = dataCustom.customize.find((c) =>c.name === item.name)

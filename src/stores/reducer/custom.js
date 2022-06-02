@@ -11,24 +11,28 @@ const initialState = {
       customize: [],
       measurement: [],
       product: "suits",
+      body: ''
     },
     {
       fabric: "",
       customize: [],
       measurement: [],
       product: "shirts",
+      body: ''
     },
     {
       fabric: "",
       customize: [],
       measurement: [],
       product: "trousers",
+      body: ''
     },
     {
       fabric: "",
       customize: [],
       measurement: [],
       product: "jacket",
+      body: ''
     },
   ],
 };
